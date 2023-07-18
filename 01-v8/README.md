@@ -1,6 +1,6 @@
 ```text
 string.plus(string) -> string
-string.minus(string) -> string
+string.sub(string) -> string
 string.mul(string) -> string
 string.div(string) -> string
 ```

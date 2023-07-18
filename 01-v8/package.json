@@ -2,5 +2,10 @@
   "name": "js-restful",
   "version": "1.0.0",
   "dependencies": {
+    "jest": "^29.6.1"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "jest"
   }
 }
