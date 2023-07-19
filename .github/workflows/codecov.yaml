@@ -15,7 +15,9 @@ jobs:
       - name: Install dependencies
         run: npm run ci
       - name: Run tests and generate code coverage report
-        run: npm run test:cov
+        run: |
+          cd 01-v8
+          npm run cov
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

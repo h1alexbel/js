@@ -19,4 +19,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - run: npm run ci
+      - run: |
+          cd 01-v8
+          npm run ci
