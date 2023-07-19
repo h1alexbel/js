@@ -11,6 +11,9 @@
     "cov": "jest --coverage"
   },
   "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
     "coverageThreshold": {
       "global": {
         "branches": 50,
