@@ -6,6 +6,18 @@
   },
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "ci": "npm install && npm run test && npm run cov",
+    "test": "jest",
+    "cov": "jest --coverage"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   }
 }
