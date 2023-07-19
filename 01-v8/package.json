@@ -1,5 +1,5 @@
 {
-  "name": "js-restful",
+  "name": "01-v8",
   "version": "1.0.0",
   "dependencies": {
     "jest": "^29.6.1"
