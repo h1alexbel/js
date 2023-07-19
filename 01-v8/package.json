@@ -1,10 +1,12 @@
 {
   "name": "01-v8",
   "version": "1.0.0",
-  "dependencies": {
+  "type": "module",
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.9",
+    "babel-jest": "^29.6.1",
     "jest": "^29.6.1"
   },
-  "type": "module",
   "scripts": {
     "ci": "npm install && npm run test && npm run cov",
     "test": "jest",
