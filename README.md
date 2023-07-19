@@ -1,4 +1,5 @@
 [![npm](https://github.com/h1alexbel/js/actions/workflows/npm.yaml/badge.svg)](https://github.com/h1alexbel/js/actions/workflows/npm.yaml)
+[![codecov](https://codecov.io/gh/h1alexbel/js/branch/master/graph/badge.svg?token=DdTq4pvnvv)](https://codecov.io/gh/h1alexbel/js)
 
 JavaScript tasks and related notes;
 
@@ -13,4 +14,4 @@ before sending us your pull request please run full npm build:
 $ npm run ci
 ```
 
-You will need Maven 9.6.6+ and Node 18.16.10 (LTS)+.
+You will need npm 9.6.6+ and Node 18.16.10 (LTS)+.
