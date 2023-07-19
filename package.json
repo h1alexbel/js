@@ -9,8 +9,8 @@
   },
   "scripts": {
     "ci": "npm install && npm run test && npm run cov",
-    "test": "01-v8/node_modules/.bin/jest",
-    "cov": "01-v8/node_modules/.bin/jest --coverage"
+    "test": "jest",
+    "cov": "jest --coverage"
   },
   "jest": {
     "transform": {
