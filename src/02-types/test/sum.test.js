@@ -57,6 +57,6 @@ describe("Test suite for Sum.js", () => {
       new Sum(
         true, true
       ).value()
-    ).toBe(2);
+    ).toBe(true);
   });
 });

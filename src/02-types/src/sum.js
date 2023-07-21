@@ -24,6 +24,7 @@
 
 import {UndefinedFree} from "./undefined-free.js";
 import {IgnoreSymbol} from "./ignore-symbol.js";
+import {And} from "./and.js";
 
 /**
  * Sum of two values.
@@ -45,6 +46,10 @@ export class Sum {
    * @return sum of two values.
    */
   value() {
+    if (typeof this.a === 'boolean' &&
+      typeof this.b === 'boolean') {
+      return new And(this.a, this.b).value();
+    }
     return new UndefinedFree(
         new IgnoreSymbol(this.a)
           .value()
