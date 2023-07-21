@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2023 Aliaksei Bialiauski, EO-CQRS
+ * Copyright (c) 2023 Aliaksei Bialiauski
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,41 @@
  * SOFTWARE.
  */
 
-import {SubOf} from "../src/sub-of.js";
+import {Sum} from "../src/sum.js";
 
-describe("Test suite for SubOf.js", () => {
-  test("subtract string in right format", () => {
+describe("Test suite for Sum.js", () => {
+  test("sums ints in right format", () => {
     expect(
-      new SubOf(
-        "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898988",
-        "2"
+      new Sum(
+        1, 1
       ).value()
-    ).toBe(
-      "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898986"
-    );
+    ).toBe(2);
+  });
+  test("sums strings in right format", () => {
+    expect(
+      new Sum("1", "1")
+        .value()
+    ).toBe("11");
+  });
+  test("sums string with int in right format", () => {
+    expect(
+      new Sum(
+        1, "1"
+      ).value()
+    ).toBe("11");
+  });
+  test("sums boolean with string in right format", () => {
+    expect(
+      new Sum(
+        true, "some"
+      ).value()
+    ).toBe("truesome");
+  });
+  test("sums booleans in right format", () => {
+    expect(
+      new Sum(
+        true, true
+      ).value()
+    ).toBe(2);
   });
 });

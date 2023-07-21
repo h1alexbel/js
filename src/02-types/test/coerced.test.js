@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2023 Aliaksei Bialiauski, EO-CQRS
+ * Copyright (c) 2023 Aliaksei Bialiauski
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,25 @@
  * SOFTWARE.
  */
 
-import {SubOf} from "../src/sub-of.js";
+import {Coerced} from "../src/coerced.js";
 
-describe("Test suite for SubOf.js", () => {
-  test("subtract string in right format", () => {
+describe("Test suite for Coerced.js", () => {
+  test("prints string in right format", () => {
     expect(
-      new SubOf(
-        "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898988",
-        "2"
-      ).value()
-    ).toBe(
-      "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898986"
-    );
+      new Coerced(1, "string")
+        .value()
+    ).toBe("1");
+  });
+  test("prints int in right format", () => {
+    expect(
+      new Coerced("12", "number")
+        .value()
+    ).toBe(12);
+  });
+  test("throws in case of unsupported in right format", () => {
+    expect(() =>
+      new Coerced("value", "unsupported")
+        .value()
+    ).toThrow(TypeError);
   });
 });

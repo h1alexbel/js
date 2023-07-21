@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2023 Aliaksei Bialiauski, EO-CQRS
+ * Copyright (c) 2023 Aliaksei Bialiauski
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,14 @@
  * SOFTWARE.
  */
 
-import {SubOf} from "../src/sub-of.js";
+import {CheckedNumber} from "../src/checked-number.js";
 
-describe("Test suite for SubOf.js", () => {
-  test("subtract string in right format", () => {
-    expect(
-      new SubOf(
-        "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898988",
-        "2"
+describe("Test suite for CheckedNumber.js", () => {
+  test("handles NaN", () => {
+    expect(() =>
+      new CheckedNumber(
+        "nan"
       ).value()
-    ).toBe(
-      "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898986"
-    );
+    ).toThrow(TypeError);
   });
 });

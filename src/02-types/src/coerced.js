@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2023 Aliaksei Bialiauski, EO-CQRS
+ * Copyright (c) 2023 Aliaksei Bialiauski
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,40 @@
  * SOFTWARE.
  */
 
-import {SubOf} from "../src/sub-of.js";
+import {CheckedNumber} from "./checked-number.js";
 
-describe("Test suite for SubOf.js", () => {
-  test("subtract string in right format", () => {
-    expect(
-      new SubOf(
-        "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898988",
-        "2"
-      ).value()
-    ).toBe(
-      "989898989898989898989898989899898989898989898989898989898998989898989898989898989898989989898989898989898989898989899898989898989898989898989898998989898989898989898989898986"
-    );
-  });
-});
+/**
+ * Coerced.
+ */
+export class Coerced {
+
+  /**
+   * Ctor.
+   * @param raw Raw value
+   * @param type Type
+   */
+  constructor(raw, type) {
+    this.raw = raw;
+    this.type = type;
+  }
+
+  /**
+   * Coerces value to a given type.
+   * @return Coerced value to a given type
+   */
+  value() {
+    if (this.type === 'string') {
+      return this.raw.toString();
+    } else if (this.type === 'symbol') {
+      return Symbol(this.raw);
+    } else if (this.type === 'number') {
+      return new CheckedNumber(
+        Number(this.raw)
+      ).value();
+    } else if (this.type === 'bigint') {
+      return BigInt(this.raw);
+    } else {
+      throw new TypeError("type is not supported");
+    }
+  }
+}
