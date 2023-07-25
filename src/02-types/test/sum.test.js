@@ -52,6 +52,20 @@ describe("Test suite for Sum.js", () => {
       ).value()
     ).toBe("truesome");
   });
+  test("sums objects in right format", () => {
+    expect(
+      new Sum(
+        {
+          "name": "cactoos"
+        },
+        {
+          "version": "0.124.2"
+        }
+      ).value()
+    ).toBe(
+      "{\"name\":\"cactoos\"}{\"version\":\"0.124.2\"}"
+    );
+  });
   test("sums booleans in right format", () => {
     expect(
       new Sum(

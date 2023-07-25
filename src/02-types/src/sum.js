@@ -25,6 +25,7 @@
 import {UndefinedFree} from "./undefined-free.js";
 import {IgnoreSymbol} from "./ignore-symbol.js";
 import {Or} from "./or.js";
+import {ObjectAsText} from "./object-as-text.js";
 
 /**
  * Sum of two values.
@@ -49,6 +50,11 @@ export class Sum {
     if (typeof this.a === 'boolean' &&
       typeof this.b === 'boolean') {
       return new Or(this.a, this.b).value();
+    }
+    if (typeof this.a === 'object' &&
+      typeof this.b === 'object') {
+      return new ObjectAsText(this.a).value()
+        + new ObjectAsText(this.b).value();
     }
     return new UndefinedFree(
         new IgnoreSymbol(this.a)
