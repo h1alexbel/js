@@ -1,35 +1,84 @@
-import {Coerced} from "./coerced.js";
-import {Inverted} from "./inverted.js";
-import {CheckedBoolean} from "./checked-boolean.js";
-import {TextAsNumber} from "./text-as-number.js";
-import {Sum} from "./sum.js";
-import {Textified} from "./textified.js";
-import {ObjectAsText} from "./object-as-text.js";
-
 export function addValues(a, b) {
-  return new Sum(
-    a, b
-  ).value();
+  if (typeof a === 'boolean' &&
+    typeof b === 'boolean') {
+    return a || b;
+  }
+  if (typeof a === 'object' &&
+    typeof b === 'object') {
+    throw new TypeError('objects are not allowed');
+  }
+  if (typeof a === 'undefined'
+    || a === null) {
+    throw new TypeError(
+      "first value is undefined"
+    );
+  }
+  if (typeof a === 'symbol') {
+    a = a.description.toString();
+  }
+  if (typeof b === 'symbol') {
+    b = b.description.toString();
+  }
+  if (typeof b === 'undefined'
+    || b === null) {
+    throw new TypeError(
+      "second value is undefined"
+    );
+  }
+  return a + b;
 }
 
 export function stringifyValue(value) {
   if (typeof value === 'object') {
-    return new ObjectAsText(value).value();
+    return JSON.stringify(
+      value
+    );
   }
-  return new Textified(value)
-    .value();
+  if (typeof value === 'undefined'
+    || value === null) {
+    throw new TypeError(
+      "value is undefined"
+    );
+  }
+  if (typeof value === 'symbol') {
+    return value.description.toString();
+  }
+  return value.toString();
 }
 
 export function invertBoolean(value) {
-  return new Inverted(
-    new CheckedBoolean(value).value()
-  ).value();
+  if (typeof value !== "boolean") {
+    throw new TypeError(
+      "value is not boolean"
+    );
+  }
+  return !value;
 }
 
 export function convertToNumber(value) {
-  return new TextAsNumber(value).value();
+  if (isNaN(value)) {
+    throw new TypeError(
+      "value is not a number"
+    );
+  }
+  return Number(value);
 }
 
 export function coerceToType(raw, type) {
-  return new Coerced(raw, type).value();
+  if (type === 'string') {
+    return raw.toString();
+  } else if (type === 'symbol') {
+    return Symbol(raw);
+  } else if (type === 'number') {
+    if (isNaN(raw)) {
+      throw new TypeError(
+        "value is not a number"
+      );
+    }
+    return Number(raw);
+  } else if (type === 'bigint') {
+    return BigInt(raw);
+  } else {
+    throw new TypeError("type is not supported");
+  }
 }

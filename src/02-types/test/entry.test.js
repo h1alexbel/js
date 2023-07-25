@@ -22,55 +22,108 @@
  * SOFTWARE.
  */
 
-import {Sum} from "../src/sum.js";
+import {addValues, coerceToType, convertToNumber, invertBoolean, stringifyValue} from "../src/entry.js";
 
 describe("Test suite for Sum.js", () => {
   test("sums ints in right format", () => {
     expect(
-      new Sum(
-        1, 1
-      ).value()
+      addValues(1, 1)
     ).toBe(2);
   });
   test("sums strings in right format", () => {
     expect(
-      new Sum("1", "1")
-        .value()
+      addValues("1", "1")
     ).toBe("11");
   });
   test("sums string with int in right format", () => {
     expect(
-      new Sum(
-        1, "1"
-      ).value()
+      addValues(1, "1")
     ).toBe("11");
   });
   test("sums boolean with string in right format", () => {
     expect(
-      new Sum(
-        true, "some"
-      ).value()
+      addValues(true, "some")
     ).toBe("truesome");
   });
   test("sums objects in right format", () => {
-    expect(
-      new Sum(
+    expect(() =>
+      addValues(
         {
           "name": "cactoos"
         },
         {
           "version": "0.124.2"
         }
-      ).value()
-    ).toBe(
-      "{\"name\":\"cactoos\"}{\"version\":\"0.124.2\"}"
-    );
+      )
+    ).toThrow(TypeError);
   });
   test("sums booleans in right format", () => {
     expect(
-      new Sum(
-        true, true
-      ).value()
+      addValues(true, true)
     ).toBe(true);
+  });
+  test("prints number in right format", () => {
+    expect(
+      stringifyValue(1)
+    ).toBe("1");
+  });
+  test("prints boolean in right format", () => {
+    expect(
+      stringifyValue(true)
+    ).toBe("true");
+  });
+  test("prints JSON in right format", () => {
+    const json = {
+      "test": "true"
+    };
+    expect(
+      stringifyValue(json)
+    ).toBe(
+      "{\"test\":\"true\"}"
+    );
+  });
+  test("prints array in JSON in right format", () => {
+    expect(
+      stringifyValue(
+        [
+          "test"
+        ]
+      )
+    ).toBe("[\"test\"]");
+  });
+  test("inverts false in right format", () => {
+    expect(
+      invertBoolean(false)
+    ).toBe(true);
+  });
+  test("inverts true in right format", () => {
+    expect(
+      invertBoolean(true)
+    ).toBe(false);
+  });
+  test("prints int in right format", () => {
+    expect(
+      convertToNumber("1")
+    ).toBe(1);
+  });
+  test("prints float in right format", () => {
+    expect(
+      convertToNumber("1.27")
+    ).toBe(1.27);
+  });
+  test("prints string in right format", () => {
+    expect(
+      coerceToType(1, "string")
+    ).toBe("1");
+  });
+  test("prints int in right format", () => {
+    expect(
+      coerceToType("12", "number")
+    ).toBe(12);
+  });
+  test("throws in case of unsupported in right format", () => {
+    expect(() =>
+      coerceToType("value", "unsupported")
+    ).toThrow(TypeError);
   });
 });
