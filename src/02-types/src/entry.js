@@ -6,13 +6,13 @@ import {Sum} from "./sum.js";
 import {Textified} from "./textified.js";
 import {ObjectAsText} from "./object-as-text.js";
 
-function addValues(a, b) {
+export function addValues(a, b) {
   return new Sum(
     a, b
   ).value();
 }
 
-function stringifyValue(value) {
+export function stringifyValue(value) {
   if (typeof value === 'object') {
     return new ObjectAsText(value).value();
   }
@@ -20,16 +20,16 @@ function stringifyValue(value) {
     .value();
 }
 
-function invertBoolean(value) {
+export function invertBoolean(value) {
   return new Inverted(
     new CheckedBoolean(value).value()
   ).value();
 }
 
-function convertToNumber(value) {
+export function convertToNumber(value) {
   return new TextAsNumber(value).value();
 }
 
-function coerceToType(raw, type) {
+export function coerceToType(raw, type) {
   return new Coerced(raw, type).value();
 }
