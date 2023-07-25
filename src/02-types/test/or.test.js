@@ -1,21 +1,21 @@
-import {And} from "../src/and.js";
+import {Or} from "../src/or.js";
 
-describe("Test suite for And.js", () => {
+describe("Test suite for Or.js", () => {
   test("returns true if both true", () => {
     expect(
-      new And(true, true)
+      new Or(true, true)
         .value()
     ).toBe(true);
   });
   test("returns false if some false", () => {
     expect(
-      new And(true, false)
+      new Or(true, false)
         .value()
-    ).toBe(false);
+    ).toBe(true);
   });
   test("returns false if all false", () => {
     expect(
-      new And(false, false)
+      new Or(false, false)
         .value()
     ).toBe(false);
   });

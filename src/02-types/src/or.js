@@ -22,42 +22,26 @@
  * SOFTWARE.
  */
 
-import {UndefinedFree} from "./undefined-free.js";
-import {IgnoreSymbol} from "./ignore-symbol.js";
-import {Or} from "./or.js";
-
 /**
- * Sum of two values.
+ * Logical OR.
  */
-export class Sum {
+export class Or {
 
   /**
    * Ctor.
-   * @param a First value
-   * @param b Second value
+   * @param first First Boolean Expression
+   * @param second Second Boolean Expression
    */
-  constructor(a, b) {
-    this.a = a;
-    this.b = b;
+  constructor(first, second) {
+    this.first = first;
+    this.second = second;
   }
 
   /**
-   * Summarize values.
-   * @return sum of two values.
+   * Evaluates Logical OR.
+   * @return {boolean}
    */
   value() {
-    if (typeof this.a === 'boolean' &&
-      typeof this.b === 'boolean') {
-      return new Or(this.a, this.b).value();
-    }
-    return new UndefinedFree(
-        new IgnoreSymbol(this.a)
-          .value()
-      ).value()
-      + new UndefinedFree(
-        new IgnoreSymbol(
-          this.b
-        ).value()
-      ).value();
+    return this.first || this.second;
   }
 }
