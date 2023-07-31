@@ -27,12 +27,14 @@ import {repeat} from "../src/repeat.js";
 describe("Test suite for repeat.js", () => {
   test("repeat in right format", () => {
     const times = 2;
-    let value = "Repeat Test";
+    let value = "Repeat";
     const spied = jest.spyOn(console, 'log');
-    repeat(() => {
-      console.log(value);
-    }, times);
+    repeat((arg) => {
+        console.log(value + arg);
+      },
+      times)
+    ("Test");
     expect(spied).toHaveBeenCalledTimes(times);
-    expect(spied).toHaveBeenCalledWith(value);
+    expect(spied).toHaveBeenCalledWith(value + "Test");
   });
 });

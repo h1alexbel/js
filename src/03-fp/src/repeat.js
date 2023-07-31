@@ -28,12 +28,14 @@
  * @param times how many times
  */
 export function repeat(func, times) {
-  if (times < 0) {
-    while (true) {
-      func();
+  return function (args) {
+    if (times < 0) {
+      while (true) {
+        func(args);
+      }
     }
-  }
-  for (let i = 0; i < times; i++) {
-    func();
-  }
+    for (let i = 0; i < times; i++) {
+      func(args);
+    }
+  };
 }
