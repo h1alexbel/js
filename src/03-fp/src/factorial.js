@@ -29,6 +29,9 @@
  * @return Factorial of number
  */
 export function factorial(number, acc = 1) {
+  if (typeof number !== 'number') {
+    throw new TypeError("parameter is not number");
+  }
   if (number === 0 || number === 1) {
     return acc;
   }

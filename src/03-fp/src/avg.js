@@ -28,6 +28,9 @@
  * @return average grade
  */
 export function avg(students) {
+  if (typeof students !== 'object') {
+    throw new TypeError("parameter is not object");
+  }
   let copied = JSON.parse(JSON.stringify(students));
   let all = copied.map((s) => {
     let raw = s.grades.reduce((a, b) => (a + b), 0);

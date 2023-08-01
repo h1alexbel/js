@@ -29,6 +29,12 @@
  * @return applied status
  */
 export function lazyMap(arr, func) {
+  if (typeof arr !== 'object') {
+    throw new TypeError("parameter is not object");
+  }
+  if (typeof func !== 'function') {
+    throw new TypeError("parameter is not function");
+  }
   let index = 0;
   return {
     next: function () {

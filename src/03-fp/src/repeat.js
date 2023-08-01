@@ -28,6 +28,9 @@
  * @param times how many times
  */
 export function repeat(func, times) {
+  if (typeof func !== 'function') {
+    throw new TypeError("parameter is not function");
+  }
   return function (args) {
     if (times < 0) {
       while (true) {

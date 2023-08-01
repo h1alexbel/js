@@ -28,5 +28,8 @@
  * @return unique words
  */
 export function unique(text) {
+  if (typeof text !== 'string') {
+    throw new TypeError("parameter is not string");
+  }
   return [...new Set(text.toLowerCase().match(/\b\w+(?![?!])\b/g))];
 }

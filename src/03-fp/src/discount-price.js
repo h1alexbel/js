@@ -29,6 +29,9 @@
  * @return Discounted products
  */
 export function discountPrice(prods, d) {
+  if (typeof prods !== 'object') {
+    throw new TypeError("parameter is not object");
+  }
   const copied = JSON.parse(JSON.stringify(prods));
   return copied.map((p) => {
     p.price = p.price * d;

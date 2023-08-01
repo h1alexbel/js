@@ -28,5 +28,8 @@
  * @return total price
  */
 export function total(prods) {
+  if (typeof prods !== 'object') {
+    throw new TypeError("parameter is not object");
+  }
   return prods.map(p => p.price).reduce((a, b) => a + b, 0);
 }

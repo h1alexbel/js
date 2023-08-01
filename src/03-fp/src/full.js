@@ -28,6 +28,9 @@
  * @return Person full name
  */
 export function full(person) {
+  if (typeof person !== 'object') {
+    throw new TypeError("parameter is not object");
+  }
   return summarize(person.firstname, person.lastname);
 }
 

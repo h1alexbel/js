@@ -29,6 +29,12 @@
  * @return Powed number
  */
 export function pow(raw, exponent) {
+  if (typeof raw !== 'number') {
+    throw new TypeError("parameter is not number");
+  }
+  if (typeof exponent !== 'number') {
+    throw new TypeError("parameter is not number");
+  }
   if (exponent === 0) {
     return 1;
   } else if (exponent < 0) {
