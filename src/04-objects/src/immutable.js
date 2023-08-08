@@ -10,7 +10,8 @@ export function immutable(object) {
       Object.defineProperty(immu, field, {
         value: value,
         writable: false,
-        enumerable: true
+        enumerable: true,
+        configurable: false
       });
     }
   }
