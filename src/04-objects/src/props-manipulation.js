@@ -1,4 +1,4 @@
-let person = {
+export let person = {
   firstName: "John",
   lastName: "Doe",
   age: 30,
@@ -20,10 +20,7 @@ Object.defineProperties(person, {
   }
 });
 
-function updateInfo(info) {
-  if (typeof info !== 'object') {
-    throw new TypeError('info is not an object');
-  }
+export function updateInfo(info) {
   Object.getOwnPropertyNames(info)
     .forEach(name => {
       if (Object.getOwnPropertyDescriptor(person, name).writable) {
@@ -33,7 +30,7 @@ function updateInfo(info) {
   return person;
 }
 
-function address() {
+function addAddress() {
   Object.defineProperty(person, 'address', {
     value: {},
     writable: true,
