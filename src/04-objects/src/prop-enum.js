@@ -1,4 +1,4 @@
-let product = {
+export let product = {
   name: "Laptop",
   price: 1000,
   quantity: 5
@@ -15,11 +15,11 @@ Object.defineProperties(product, {
   }
 });
 
-function total(prod) {
+export function total(prod) {
   return valueOf(prod, 'price') * valueOf(prod, 'quantity');
 }
 
-function valueOf(prod, field) {
+export function valueOf(prod, field) {
   if (typeof prod !== "object" || typeof field !== "string") {
     throw new TypeError('prod must be an object, field must be string');
   }
@@ -29,7 +29,7 @@ function valueOf(prod, field) {
   return Object.getOwnPropertyDescriptor(prod, field).value;
 }
 
-function deleteNonConfigurable(prod, field) {
+export function deleteNonConfigurable(prod, field) {
   if (typeof prod !== "object" || typeof field !== "string") {
     throw new TypeError('prod must be an object, field must be string');
   }
@@ -40,10 +40,4 @@ function deleteNonConfigurable(prod, field) {
     throw Error('field is not configurable');
   }
   delete prod[field];
-}
-
-function typed(object, field) {
-  if (typeof object !== "object" || typeof field !== "string") {
-    throw new TypeError('prod must be an object, field must be string');
-  }
 }
