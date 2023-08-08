@@ -1,4 +1,4 @@
-let account = {
+export let account = {
   inside: 1000,
   get usd() {
     return `$${this.inside}`;
@@ -7,7 +7,7 @@ let account = {
     this.inside = amount;
   }
 };
-let account2 = {
+export let account2 = {
   inside: 1000,
   get usd() {
     return `$${this.inside}`;
@@ -17,12 +17,7 @@ let account2 = {
   }
 };
 
-function transfer(from, to, amount) {
+export function transfer(from, to, amount) {
   from.balance = from.inside - amount;
   to.balance = to.inside + amount;
 }
-
-transfer(account, account2, 100);
-
-console.log(account);
-console.log(account2);
