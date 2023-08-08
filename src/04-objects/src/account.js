@@ -18,6 +18,12 @@ export let account2 = {
 };
 
 export function transfer(from, to, amount) {
-  from.balance = from.inside - amount;
-  to.balance = to.inside + amount;
+  if (from.inside > amount) {
+    from.balance = from.inside - amount;
+    to.balance = to.inside + amount;
+  } else {
+    throw Error(
+      `account: ${from.inside} cannot handle transaction ${amount}`
+    );
+  }
 }
